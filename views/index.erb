@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <title>連絡帳</title>
+    <link rel="stylesheet" href="/style.css"></link>
+  </head>
+  <body>
+    <div>
+      <h1>連絡帳</h1>
+      <div><%= @message %></div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>名前</th>
+              <th>メールアドレス</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @contact_lists.each do |list| %>
+            <tr>
+              <td><%= list.id %></td>
+              <td><%= list.name %></td>
+              <td><%= list.email %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <a href="/contact_new">連絡先新規作成へ</a>
+      </div>
+    </div>
+  </body>
+  
+  <footer>
+    <a href="about.html">ABOUT</a>
+    <p>今の時刻は<%= @current_time %></p>
+  </footer>
+</html>

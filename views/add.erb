@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <title>連絡帳</title>
+        <link rel="stylesheet" href="/style.css"></link>
+    </head>
+    <body>
+        <h1>新規連絡先</h1>
+        <div>
+          <% if @contact.errors.present? %>
+            <p>エラーが発生しました</p>
+            <div>
+              <p>&lt;エラー内容&gt;</p>
+              <ul>
+                <% @contact.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <!-- actionで’add_contacts’に遷移することを指定 -->
+        <form action="add_contacts" method="post">
+            <div>
+                <label for="contact_name">名前</label>
+                <input type="text" name="name" id="contact_name"/>
+            </div>
+            <div>
+                <label for="contact_email">Email</label>
+                <input type="text" name="email" id="contact_email"/>
+            </div>
+            <input type="submit"/>
+        </form>
+        <div>
+            <a href="/">戻る</a>
+        </div>
+    </body>
+</html>
