@@ -3,36 +3,45 @@
         <meta charset="UTF-8"></meta>
         <title>連絡帳</title>
         <link rel="stylesheet" href="/style.css"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <h1>新規連絡先</h1>
-        <div>
-          <% if @contact.errors.present? %>
-            <p>エラーが発生しました</p>
+        <header id="header">
+            <h1 class="title">連絡帳</h1>
+        </header>
+        <main class="container add">
+            <h1 class="subTitle add__subTitle">新規連絡先</h1>
             <div>
-              <p>&lt;エラー内容&gt;</p>
-              <ul>
-                <% @contact.errors.full_messages.each do |message| %>
-                <li><%= message %></li>
-                <% end %>
-              </ul>
+              <% if @contact.errors.present? %>
+                <p>エラーが発生しました</p>
+                <div>
+                  <p>&lt;エラー内容&gt;</p>
+                  <ul>
+                    <% @contact.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
             </div>
-          <% end %>
-        </div>
-        <!-- actionで’add_contacts’に遷移することを指定 -->
-        <form action="add_contacts" method="post">
+            <!-- actionで’add_contacts’に遷移することを指定 -->
+            <form action="add_contacts" method="post">
+                <div>
+                    <label for="contact_name">名前</label>
+                    <input type="text" name="name" id="contact_name"/>
+                </div>
+                <div>
+                    <label for="contact_email">Email</label>
+                    <input type="text" name="email" id="contact_email"/>
+                </div>
+                <div class="add__submit">
+                    <input class="waves-effect waves-light btn" type="submit"/>
+                </div>
+            </form>
             <div>
-                <label for="contact_name">名前</label>
-                <input type="text" name="name" id="contact_name"/>
+                <a href="/">戻る</a>
             </div>
-            <div>
-                <label for="contact_email">Email</label>
-                <input type="text" name="email" id="contact_email"/>
-            </div>
-            <input type="submit"/>
-        </form>
-        <div>
-            <a href="/">戻る</a>
-        </div>
+        </main>
     </body>
 </html>

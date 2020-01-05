@@ -1,0 +1,22 @@
+#header{
+  background: #424242;
+  color: #ffffff;
+}
+.title{
+  font-size: 3rem;
+  margin: 0 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.subTitle{
+  font-size: 2rem;
+}
+
+/* add.erbファイル */
+.add{
+  width: 30% !important;
+}
+.add__submit{
+    display: flex;
+    justify-content: flex-end;
+}

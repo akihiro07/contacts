@@ -3,11 +3,17 @@
     <meta charset="UTF-8"></meta>
     <title>連絡帳</title>
     <link rel="stylesheet" href="/style.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <div>
-      <h1>連絡帳</h1>
+    <header id="header">
+      <h1 class="title">連絡帳</h1>
+    </header>
+    <main class="container">
+      <h2 class="subTitle home__subTitle">連絡帳一覧</h2>
       <div><%= @message %></div>
+      <div><%= @delete_message %></div>
       <div>
         <table>
           <thead>
@@ -15,6 +21,7 @@
               <th>ID</th>
               <th>名前</th>
               <th>メールアドレス</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -23,19 +30,17 @@
               <td><%= list.id %></td>
               <td><%= list.name %></td>
               <td><%= list.email %></td>
+              <!-- TODO：以下で大丈夫か？（?以降） -->
+              <td><a href="/contact_delete?id=<%= list.id %>&name=<%= list.name %>">削除する</a></td> <!-- 「」でss側でparams[:id]でid取得可 -->
             </tr>
             <% end %>
           </tbody>
         </table>
       </div>
       <div>
-        <a href="/contact_new">連絡先新規作成へ</a>
+        <div><a href="/contact_new">新規連絡先追加へ</a></div>
+        <div><a href="about.html">ABOUT</a></div>
       </div>
-    </div>
+    </main>
   </body>
-  
-  <footer>
-    <a href="about.html">ABOUT</a>
-    <p>今の時刻は<%= @current_time %></p>
-  </footer>
 </html>

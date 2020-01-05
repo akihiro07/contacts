@@ -17,20 +17,33 @@ class Contact < ActiveRecord::Base
 end
 
 get "/" do
-    @current_time = Time.now
     #(DBの)テーブルデータを取得
     @contact_lists = Contact.all
     @message = session[:name]
-    # 1度だけ追加messageを表示するので、表示後削除
-    session.delete(:name)
+    session.delete(:name) # 1度だけ追加messageを表示するので、表示後削除
+    @delete_message = session[:deleteMessage]
+    session.delete(:deleteMessage)
     erb :index
 end
 
+# =====新規追加画面遷移
 get "/contact_new" do
     @contact = Contact.new
     erb :add
 end
 
+# =====追加した連絡先を削除
+get "/contact_delete" do
+    contact_id = params[:id]
+    contact_name = params[:name]
+    @contact_delete = Contact.find(contact_id).destroy
+    if @contact_delete
+        session[:deleteMessage] = "#{contact_name}さんの連絡先削除が成功しました！"
+    end
+    redirect '/'
+end
+
+# =====新規データをDBへ追加＆追加メッセージ格納
 post '/add_contacts' do
     name = params[:name]
     email = params[:email]
